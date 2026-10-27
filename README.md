@@ -129,6 +129,7 @@ Las capturas de ejecución se encuentran en la carpeta `evidencia/`.
 
 Estudiantes: 
 Juan Emmanuel Rodríguez García (2025-0316)
+
 Cristopher Ovalle (2025-0436)
 
 

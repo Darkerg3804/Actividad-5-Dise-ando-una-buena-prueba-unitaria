@@ -128,6 +128,7 @@ Las capturas de ejecución se encuentran en la carpeta `evidencia/`.
 ## 10. Autor
 
 Estudiante: Juan Emmanuel Rodríguez García
+Matrícula: 2025-0316
 
 Asignatura: Desarrollo Basado en Pruebas
 

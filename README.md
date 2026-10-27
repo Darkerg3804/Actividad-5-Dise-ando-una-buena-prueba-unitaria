@@ -1,46 +1,21 @@
-# Actividad 5: Pruebas Unitarias con TDD
+# Actividad 5: Diseño de pruebas unitarias con TDD
 
-## Descripción
+## 1. Descripción del proyecto
 
-Este proyecto tiene como objetivo aplicar los principios de diseño de una buena prueba en el desarrollo guiado por pruebas (*Test-Driven Development*, TDD), mediante la implementación de una función que calcula el precio final de un producto después de aplicar un descuento porcentual.
+Este proyecto consiste en desarrollar una función denominada `calcularDescuento()` mediante la metodología **Test-Driven Development (TDD)**.
 
-Se busca demostrar el uso de pruebas unitarias y aserciones, así como las características de independencia, repetibilidad, atomicidad, claridad y automatización.
+La función recibe el precio de un producto y un porcentaje de descuento, y devuelve el precio final después de aplicar el descuento.
 
-## Objetivos
+El propósito de la actividad es aplicar los principios de diseño de buenas pruebas unitarias: independencia, repetibilidad, atomicidad, claridad y automatización.
 
-- Aplicar el enfoque TDD durante el desarrollo de una función.
-- Diseñar y ejecutar pruebas unitarias antes de implementar la solución.
-- Comprobar los resultados mediante aserciones.
-- Garantizar la independencia y repetibilidad de las pruebas.
-- Mejorar la claridad y organización del código de prueba.
+## 2. Tecnologías utilizadas
 
-## Funcionalidad
-
-La función `calcularDescuento()` recibe el precio de un producto y el porcentaje de descuento, y devuelve el precio final después de aplicar el descuento.
-
-**Ejemplo:**
-
-```python
-calcularDescuento(1000, 10)  # Resultado: 900
-```
-
-## Casos de prueba
-
-| Caso | Precio | Descuento | Resultado esperado |
-|---|---:|---:|---:|
-| Sin descuento | 1000 | 0 % | 1000 |
-| Descuento del 10 % | 1000 | 10 % | 900 |
-| Descuento del 20 % | 500 | 20 % | 400 |
-| Precio cero | 0 | 10 % | 0 |
-| Descuento máximo permitido | 1000 | 100 % | 0 |
-
-## Tecnologías utilizadas
-
-- Python 3
-- pytest
+- Python 3.12.10
+- pytest 9.1.1
+- Visual Studio Code
 - Git y GitHub
 
-## Estructura del proyecto
+## 3. Estructura del proyecto
 
 ```text
 Actividad5-TDD/
@@ -48,49 +23,109 @@ Actividad5-TDD/
 ├── test_calcular_descuento.py
 ├── README.md
 └── evidencia/
-    ├── pruebas-fallidas.png
-    └── pruebas-exitosas.png
+    ├── RED.png
+    └── GREEN.png
 ```
 
-## Instalación y ejecución
+## 4. Funcionalidad implementada
 
-**1. Instalar Python 3**, si todavía no está instalado.
+La función `calcularDescuento(precio, porcentaje)` calcula el descuento correspondiente y lo resta del precio original.
 
-**2. Instalar pytest:**
+**Ejemplo:**
+
+```python
+calcularDescuento(1000, 10)  # Resultado: 900.0
+```
+
+La fórmula utilizada es:
+
+\[
+P_f=P-\frac{P\cdot d}{100}
+\]
+
+Donde:
+
+- \(P_f\): precio final.
+- \(P\): precio original.
+- \(d\): porcentaje de descuento.
+
+## 5. Casos de prueba
+
+Se implementaron cinco pruebas unitarias para verificar diferentes situaciones:
+
+| Caso de prueba | Entrada | Resultado esperado |
+|---|---|---:|
+| Sin descuento | `1000, 0` | 1000 |
+| Descuento del 10 % | `1000, 10` | 900 |
+| Descuento del 20 % | `500, 20` | 400 |
+| Precio cero | `0, 10` | 0 |
+| Descuento del 100 % | `1000, 100` | 0 |
+
+Las pruebas utilizan aserciones `assert` para comparar el resultado obtenido con el resultado esperado.
+
+## 6. Aplicación de TDD
+
+El desarrollo se realizó siguiendo las etapas del ciclo TDD:
+
+### Red — Pruebas fallidas
+
+Se ejecutaron las pruebas antes de completar la implementación de la función. Las cinco pruebas fallaron, evidenciando que la funcionalidad todavía no estaba disponible correctamente.
+
+La captura correspondiente se encuentra en `evidencia/RED.png`.
+
+### Green — Pruebas exitosas
+
+Se implementó la función para calcular el descuento y devolver el precio final. Posteriormente, se ejecutaron nuevamente las pruebas y los cinco casos resultaron exitosos.
+
+La captura correspondiente se encuentra en `evidencia/GREEN.png`.
+
+### Refactor — Mejora del código
+
+La etapa de refactorización consiste en mejorar la estructura y legibilidad del código sin modificar su comportamiento. Las pruebas unitarias permiten verificar que los cambios mantengan los resultados esperados.
+
+## 7. Principios de diseño de pruebas aplicados
+
+- **Independencia:** cada prueba utiliza sus propios datos y puede ejecutarse sin depender de otra prueba.
+- **Repetibilidad:** los mismos datos producen resultados consistentes en ejecuciones sucesivas.
+- **Atomicidad:** cada prueba verifica un caso de comportamiento específico.
+- **Claridad:** los nombres descriptivos facilitan identificar qué comportamiento verifica cada prueba.
+- **Automatización:** pytest ejecuta los casos y evalúa las aserciones automáticamente.
+
+## 8. Instalación y ejecución
+
+Se requiere Python 3 y pytest.
+
+Instalar pytest:
 
 ```bash
-python -m pip install pytest
+pip install pytest
 ```
 
-**3. Ejecutar las pruebas:**
+Ejecutar las pruebas desde la raíz del proyecto:
 
 ```bash
-python -m pytest -v
+pytest -v
 ```
 
-El comando ejecuta las pruebas unitarias y muestra el resultado de cada una.
+## 9. Resultados
 
-## Metodología TDD
+La ejecución final de las pruebas produjo el siguiente resultado:
 
-El desarrollo sigue las siguientes etapas:
+```text
+collected 5 items
 
-1. **Red:** escribir las pruebas y comprobar que fallen antes de implementar la función.
-2. **Green:** implementar la funcionalidad mínima necesaria para que las pruebas pasen.
-3. **Refactor:** mejorar la claridad y organización del código sin alterar su comportamiento.
+test_calcular_descuento.py::test_sin_descuento PASSED
+test_calcular_descuento.py::test_descuento_del_diez_por_ciento PASSED
+test_calcular_descuento.py::test_descuento_del_veinte_por_ciento PASSED
+test_calcular_descuento.py::test_precio_cero PASSED
+test_calcular_descuento.py::test_descuento_maximo_del_cien_por_ciento PASSED
 
-## Principios de diseño de pruebas aplicados
+5 passed in 0.04s
+```
 
-- **Independencia:** cada prueba puede ejecutarse sin depender de las demás.
-- **Repetibilidad:** las pruebas producen resultados consistentes cuando se ejecutan nuevamente bajo las mismas condiciones.
-- **Atomicidad:** cada prueba verifica un comportamiento específico.
-- **Claridad:** los nombres de las pruebas describen el comportamiento evaluado.
-- **Automatización:** pytest ejecuta las pruebas y verifica los resultados automáticamente mediante aserciones.
+Las capturas de ejecución se encuentran en la carpeta `evidencia/`.
 
-## Evidencias
-
-La carpeta `evidencia/` contiene capturas de la ejecución de las pruebas antes y después de implementar la función, mostrando el proceso TDD y la ejecución exitosa de los casos de prueba.
-
-## Autor
+## 10. Autor
 
 Estudiante: Juan Emmanuel Rodríguez García
 
